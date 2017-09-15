@@ -16,6 +16,7 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -46,18 +47,49 @@ public class MainActivityTest {
                 actionOnItemAtPosition(15, click())
         );
 
-        // Check detail view
+        /*// Check detail view
         onView(withId(R.id.favoriteStatus)).check(matches(withText(R.string.unfavorite)));
       //
         // return to main activity
-        pressBack();
+        pressBack();*/
     }
 
-    @Test
-    public void testFavoriteToggle() throws Exception {
-        // More advanced test case testing toggling the favorite status on a particular row
+//    @Test
+//    public void testFavoriteToggle() throws Exception {
+//        // More advanced test case testing toggling the favorite status on a particular row
+//
+//        // Chaining several actions together on the recycler view
+//        onView(withId(R.id.recyclerView)).perform(
+//
+//                // First position the recycler view
+//                scrollToPosition(25),
+//
+//                // Using the check view action, you can now test conditions of the view at position 25
+//                actionOnItemAtPosition(25, DescendantViewActions.checkViewAction(matches(isCompletelyDisplayed()))),
+//
+//                // With the descendant actions provided, you can check the status of a descendant view using
+//                // a standard check. Just provide way to find the descendant view and how you want to validate
+//                // the view.
+//                actionOnItemAtPosition(25, DescendantViewActions.checkDescendantViewAction(
+//                        withId(R.id.favoriteButton), matches(withContentDescription(R.string.favorite)))),
+//
+//                // Or perform an action on a descendant view.
+//                actionOnItemAtPosition(25,
+//                        DescendantViewActions.performDescendantAction(withId(R.id.favoriteButton), click())),
+//
+//                // Then check to see the status change
+//                actionOnItemAtPosition(25, DescendantViewActions.checkDescendantViewAction(
+//                        withId(R.id.favoriteButton), matches(withContentDescription(R.string.unfavorite))))
+//
+//                // and non-existence of a view
+////                actionOnItemAtPosition(25, DescendantViewActions.checkDescendantViewAction(withId(R.id.favoriteStatus), doesNotExist()))
+//
+//        );
+//    }
 
-        // Chaining several actions together on the recycler view
+    @Test
+    public void testCheckDialogDisplayed() {
+
         onView(withId(R.id.recyclerView)).perform(
 
                 // First position the recycler view
@@ -74,15 +106,57 @@ public class MainActivityTest {
 
                 // Or perform an action on a descendant view.
                 actionOnItemAtPosition(25,
-                        DescendantViewActions.performDescendantAction(withId(R.id.favoriteButton), click())),
+                        DescendantViewActions.performDescendantAction(withId(R.id.favoriteButton), click()))
 
-                // Then check to see the status change
-                actionOnItemAtPosition(25, DescendantViewActions.checkDescendantViewAction(
-                        withId(R.id.favoriteButton), matches(withContentDescription(R.string.unfavorite)))),
-
-                // and non-existence of a view
-                actionOnItemAtPosition(25, DescendantViewActions.checkDescendantViewAction(withId(R.id.favoriteStatus), doesNotExist()))
 
         );
+
+        // Check the dialog title text is displayed
+        onView(withText(R.string.dialog_title)).check(matches(isDisplayed()));
     }
+    @Test
+    public void testClickOkButton() {
+
+        onView(withId(R.id.recyclerView)).perform(
+
+                scrollToPosition(25),
+
+                actionOnItemAtPosition(25, DescendantViewActions.checkViewAction(matches(isCompletelyDisplayed()))),
+
+                actionOnItemAtPosition(25, DescendantViewActions.checkDescendantViewAction(
+                        withId(R.id.favoriteButton), matches(withContentDescription(R.string.favorite)))),
+
+                actionOnItemAtPosition(25,
+                        DescendantViewActions.performDescendantAction(withId(R.id.favoriteButton), click()))
+
+
+        );
+
+        // android.R.id.button1 = positive button
+        onView(withId(android.R.id.button1)).perform(click());
+
+    }
+
+    @Test
+    public void testClickCancelButton() {
+        onView(withId(R.id.recyclerView)).perform(
+
+                scrollToPosition(25),
+
+                actionOnItemAtPosition(25, DescendantViewActions.checkViewAction(matches(isCompletelyDisplayed()))),
+
+                actionOnItemAtPosition(25, DescendantViewActions.checkDescendantViewAction(
+                        withId(R.id.favoriteButton), matches(withContentDescription(R.string.favorite)))),
+
+                actionOnItemAtPosition(25,
+                        DescendantViewActions.performDescendantAction(withId(R.id.favoriteButton), click()))
+
+
+        );
+        // android.R.id.button2 = negative button
+        onView(withId(android.R.id.button2)).perform(click());
+    }
+
+
+
 }

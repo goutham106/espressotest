@@ -5,4 +5,9 @@
     <string name="unfavorite">Unfavorite</string>
 
     <string name="activity_detail">Item Detail</string>
+
+    <string name="dialog_title">Please confirm</string>
+    <string name="dialog_message">This is a very important action that you need to confirm.</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
 </resources>

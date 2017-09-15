@@ -23,6 +23,6 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        binding.recyclerView.setAdapter(new MainAdapter());
+        binding.recyclerView.setAdapter(new MainAdapter(MainActivity.this));
     }
 }
