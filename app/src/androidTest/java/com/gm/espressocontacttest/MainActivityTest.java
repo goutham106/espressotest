@@ -52,6 +52,12 @@ public class MainActivityTest {
         onView(withText(MainActivity.MATCH_CONTACT_NAME_IN_TOAST))
                 .inRoot(withDecorView(not(activityRule.getActivity().getWindow().getDecorView())))
                 .check(matches(isDisplayed()));
+
+
+        /*onView(allOf(withId(<Textviewid>), withText(<match text eg. sushil>))
+    .check(matches(isDisplayed()));*/
+
+
     }
 
 }

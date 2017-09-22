@@ -1,17 +1,21 @@
 package com.gm.recyclerdetailtest;
 
+import android.support.test.espresso.FailureHandler;
 import android.support.test.rule.ActivityTestRule;
+import android.view.View;
 
 import com.gm.recyclerdetailtest.activity.MainActivity;
 import com.gm.recyclerdetailtest.helper.DescendantViewActions;
 
+import junit.framework.AssertionFailedError;
+
+import org.hamcrest.Matcher;
 import org.junit.Rule;
 import org.junit.Test;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.pressBack;
+import static android.support.test.espresso.action.ViewActions.actionWithAssertions;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
@@ -20,6 +24,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static com.gm.recyclerdetailtest.helper.ViewVisibleCheckAssertions.isVisible;
+import static org.hamcrest.CoreMatchers.allOf;
 
 /**
  * Author     : Gowtham
@@ -129,7 +135,6 @@ public class MainActivityTest {
                 actionOnItemAtPosition(25,
                         DescendantViewActions.performDescendantAction(withId(R.id.favoriteButton), click()))
 
-
         );
 
         // android.R.id.button1 = positive button
@@ -155,6 +160,15 @@ public class MainActivityTest {
         );
         // android.R.id.button2 = negative button
         onView(withId(android.R.id.button2)).perform(click());
+
+        //onView(allOf(withId(R.id.favoriteButton), withText("sushil"))).check(matches(isDisplayed()));
+
+//        onView(withId(R.id.favoriteStatus)).check(matches(withText("Sushil"))).perform(click());
+
+
+//        onView(withId(R.id.favoriteButton)).check(isVisible());
+
+
     }
 
 
