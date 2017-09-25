@@ -163,10 +163,10 @@ public class MainActivityTest {
 
         //onView(allOf(withId(R.id.favoriteButton), withText("sushil"))).check(matches(isDisplayed()));
 
-//        onView(withId(R.id.favoriteStatus)).check(matches(withText("Sushil"))).perform(click());
+        onView(withId(R.id.favoriteStatus)).check(matches(withText("Sushil"))).perform(click());
 
 
-//        onView(withId(R.id.favoriteButton)).check(isVisible());
+        onView(withId(R.id.favoriteButton)).check(isVisible());
 
 
     }

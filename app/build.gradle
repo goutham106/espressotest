@@ -5,7 +5,7 @@ android {
     buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "com.gm.espressocontacttest"
-        minSdkVersion 15
+        minSdkVersion 18
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -24,12 +24,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.0.2'
-    implementation 'com.android.support:recyclerview-v7:26.0.2'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.google.android.gms:play-services-maps:11.4.0'
     testImplementation 'junit:junit:4.12'
-
 
     // tests
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
@@ -45,5 +45,12 @@ dependencies {
         exclude module: 'recyclerview-v7'
         exclude module: 'design'
     }
+
+    androidTestCompile('com.android.support.test.espresso:espresso-intents:3.0.1', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile("com.android.support.test.uiautomator:uiautomator-v18:2.1.1", {
+        exclude group: "com.android.support", module: "support-annotations"
+    })
 
 }
