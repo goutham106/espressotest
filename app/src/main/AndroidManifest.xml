@@ -13,6 +13,11 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+
+    <!--
+        To use mock locations, an app must have request the "access mock locations" permission.
+        The user accepts this request during installation.
+    -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -41,7 +46,11 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps1"></activity>
+            android:label="@string/title_activity_maps1" />
+        <activity android:name=".LocationActivity" />
+
+        <service android:name=".service.LocationService"/>
+
     </application>
 
 </manifest>
