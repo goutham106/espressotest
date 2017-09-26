@@ -68,7 +68,7 @@ public class LocationService extends Service implements LocationListener {
                     .getSystemService(LOCATION_SERVICE);
 
             // get GPS status
-            assert locationManager != null;
+//            assert locationManager != null;
             checkGPS = locationManager
                     .isProviderEnabled(LocationManager.GPS_PROVIDER);
 
